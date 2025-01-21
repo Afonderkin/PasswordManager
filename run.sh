@@ -19,6 +19,9 @@ case "$1" in
   migrate)
     docker exec -it django_app python manage.py migrate
     ;;
+  makemigrations)
+    docker exec -it django_app python manage.py makemigrations
+    ;;
   createsuperuser)
     docker exec -it django_app python manage.py createsuperuser
     ;;
