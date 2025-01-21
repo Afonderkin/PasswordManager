@@ -1,0 +1,57 @@
+# Игнорировать виртуальное окружение
+venv/
+.venv/
+env/
+
+# Игнорировать файлы Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+
+# Игнорировать файлы IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Игнорировать статические файлы и логи
+staticfiles/
+media/
+logs/
+
+# Игнорировать файлы окружения
+.env
+.env.local
+.env.development
+.env.production
+
+# Игнорировать Git
+.git/
+.gitignore
+
+# Игнорировать Docker-файлы (если они не нужны в контейнере)
+Dockerfile
+docker-compose.yml
+docker-composes/
+
+# Игнорировать временные файлы
+tmp/
+temp/
+
+# Игнорировать файлы, созданные pytest
+.pytest_cache/
+
+# Игнорировать файлы, созданные coverage
+.coverage
+htmlcov/
+
+# Игнорировать файлы, созданные Jupyter Notebook
+.ipynb_checkpoints/
+
+# Игнорировать файлы, созданные macOS
+.DS_Store
+
+# Игнорировать файлы, созданные Windows
+Thumbs.db

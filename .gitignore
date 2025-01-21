@@ -1,0 +1,67 @@
+# Игнорировать файлы базы данных SQLite
+*.sqlite3
+*.db
+*.db3
+
+# Игнорировать скрытые файлы и директории
+.*
+!.gitignore
+
+# Игнорировать директории и файлы, созданные Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Игнорировать виртуальные окружения
+venv/
+env/
+.venv/
+.env/
+
+# Игнорировать статические файлы, собранные collectstatic
+/staticfiles/
+
+# Игнорировать медиафайлы
+/media/
+
+# Игнорировать файлы IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Игнорировать файлы журналов
+*.log
+
+# Игнорировать файлы зависимостей
+node_modules/
+bower_components/
+
+# Игнорировать файлы окружения
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Игнорировать файлы, созданные pytest
+.pytest_cache/
+
+# Игнорировать файлы, созданные coverage
+.coverage
+htmlcov/
+
+# Игнорировать файлы, созданные build-системами
+/dist/
+/build/
+*.egg-info/
+*.egg
+
+# Игнорировать файлы, созданные Jupyter Notebook
+.ipynb_checkpoints/
+
+# Игнорировать файлы, созданные macOS
+.DS_Store
+
+# Игнорировать файлы, созданные Windows
+Thumbs.db
