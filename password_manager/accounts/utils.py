@@ -1,7 +1,13 @@
+import environ
 from cryptography.fernet import Fernet
+from password_manager.settings import env_file_path
 
 
-key = Fernet.generate_key()
+env = environ.Env()
+environ.Env.read_env(env_file=env_file_path)
+
+key = env('FERNET_KEY').encode()
+
 cipher_suite = Fernet(key)
 
 
