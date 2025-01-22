@@ -13,6 +13,12 @@ case "$1" in
   start)
     docker-compose -f docker-composes/db.yaml -f docker-composes/app.yaml start
     ;;
+  db-start)
+    docker-compose -f docker-composes/db.yaml start
+    ;;
+  db-stop)
+    docker-compose -f docker-composes/db.yaml stop
+    ;;
   logs)
     docker-compose -f docker-composes/db.yaml -f docker-composes/app.yaml logs -f
     ;;
