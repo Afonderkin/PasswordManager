@@ -7,7 +7,7 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Accounts
-        fields = ['id', 'email', 'service_name', 'user', 'password']
+        fields = ['id', 'email', 'service_name', 'user', 'password', 'created_at', 'updated_at']
 
         extra_kwargs = {
             'user': {'read_only': True}

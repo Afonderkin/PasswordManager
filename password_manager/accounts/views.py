@@ -8,6 +8,8 @@ from .models import Accounts
 
 
 class AccountsListCreateView(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
     queryset = Accounts.objects.all()
     serializer_class = AccountSerializer
 
@@ -16,6 +18,8 @@ class AccountsListCreateView(generics.ListCreateAPIView):
 
 
 class AccountsDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
     queryset = Accounts.objects.all()
     serializer_class = AccountSerializer
 

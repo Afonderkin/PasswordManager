@@ -69,7 +69,7 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Password Manager API',
     'DESCRIPTION': 'A Simple password manager API',
-    'VERSION': '0.1.0',
+    'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     'AUTHENTICATION_WHITELIST': ['users.authentication.CustomTokenAuthentication'],
 }

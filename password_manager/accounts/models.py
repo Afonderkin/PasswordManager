@@ -1,8 +1,10 @@
 from django.db import models
+
+from models import TimeBaseModel
 from .utils import encrypt_password, decrypt_password
 
 
-class Accounts(models.Model):
+class Accounts(TimeBaseModel):
     """The model that stores user accounts"""
     email = models.EmailField(verbose_name='Email')
     encrypted_password = models.CharField(max_length=255, verbose_name='Encrypted Password')
