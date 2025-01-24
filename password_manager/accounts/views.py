@@ -1,17 +1,58 @@
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import generics, permissions, status
 from rest_framework.exceptions import NotFound
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
+from .paginations import StandardResultsSetPagination
 from .serializers import AccountSerializer, DecryptPasswordSerializer
 from .models import Accounts
 
 
+@extend_schema(
+    parameters=[
+        OpenApiParameter(
+            name='service_name',
+            description='Фильтр по названию сервиса',
+            required=False,
+            type=str,
+        ),
+        OpenApiParameter(
+            name='email',
+            description='Фильтр по email',
+            required=False,
+            type=str,
+        ),
+        OpenApiParameter(
+            name='ordering',
+            description='Сортировка по полю',
+            required=False,
+            type=str,
+        )
+    ]
+)
 class AccountsListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
 
-    queryset = Accounts.objects.all()
     serializer_class = AccountSerializer
+
+    def get_queryset(self):
+        queryset = Accounts.objects.all()
+
+        service_name = self.request.query_params.get('service_name', None)
+        if service_name:
+            queryset = queryset.filter(service_name__icontains=service_name)
+
+        email = self.request.query_params.get('email', None)
+        if email:
+            queryset = queryset.filter(email__icontains=email)
+
+        ordering = self.request.query_params.get('ordering', None)
+        if ordering:
+            queryset = queryset.order_by(ordering)
+
+        return queryset
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
