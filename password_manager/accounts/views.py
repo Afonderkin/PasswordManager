@@ -40,14 +40,20 @@ class AccountsListCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = Accounts.objects.all()
 
+        # select account by current user
+        queryset = queryset.filter(user=self.request.user)
+
+        # filter by service_name
         service_name = self.request.query_params.get('service_name', None)
         if service_name:
             queryset = queryset.filter(service_name__icontains=service_name)
 
+        # filter by email
         email = self.request.query_params.get('email', None)
         if email:
             queryset = queryset.filter(email__icontains=email)
 
+        # order by field
         ordering = self.request.query_params.get('ordering', None)
         if ordering:
             queryset = queryset.order_by(ordering)
@@ -62,6 +68,17 @@ class AccountsDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     queryset = Accounts.objects.all()
+
+    # check if account by current user
+    def get_object(self):
+        obj = super().get_object()
+        if obj.user != self.request.user:
+            raise NotFound("Account not found or you do not have permission to access it.")
+        return obj
+
+    def perform_update(self, serializer):
+        serializer.save(user=self.request.user)
+
     serializer_class = AccountSerializer
 
 
